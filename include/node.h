@@ -1,13 +1,11 @@
-
-de {
+struct Node {
 
     char* data;
-struct Node {
+
     struct Node* prev;
 
     struct Node* next;
 
-s;
+};
 
-
-typedef struct Node Node;i
+typedef struct Node Node;
