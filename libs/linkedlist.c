@@ -22,11 +22,11 @@ void init()
 }
 
 bool empty(){
-   return size() == 0;
+	return size() == 0;
 }
 
 size_t size() {
-    return nSize
+	return nSize
 }
 
 void print(){
@@ -65,27 +65,27 @@ void clear()
 }
 
 Node* append_left(size_t n, char new_data[]){
-   Node* new = malloc(sizeof(Node));
-   new->data = new_data;
-   insert_after(_head, new);
+	Node* new = malloc(sizeof(Node));
+        new->data = new_data;
+        insert_after(_head, new);
 }
 
 Node* append(size_t n, char new_data[]){
-   if(!isInit)
-      init();
-   Node* new = malloc(sizeof(Node));
-   new->data=new_data;
-   insert_after(_tail->prev, new);
+	if(!isInit)
+		init();
+        Node* new = malloc(sizeof(Node));
+        new->data=new_data;
+        insert_after(_tail->prev, new);
 }
 
 Node* _insert_after(Node* cur_node, size_t n, char new_data[]){
 }
 
 Node* insert_after(Node* cur_node, Node* new_node){
-   if(cur_node == tail)
-   return new_node;
+	if(cur_node == tail)
+		return new_node;
    
-   nSize++;
+	nSize++;
 	new_node->next = cur_node->next;
 	new_node->prev = cur_node;
 	cur_node->next = new_node;
@@ -101,60 +101,60 @@ Node* pop(){
 }
 
 Node* delete_node(Node* cur_node){
-   if(cur_nide == head || cur_node == _tail)
-      return _tail;
-   Node* result = cur_node->next;
-   cur_node->prev->next = cur_node->next;
-   cur_node->next->prev = cur_node->prev;
-   free(cur_node);
-   nSize--;
-   return result;
+	if(cur_nide == head || cur_node == _tail)
+		return _tail;
+	Node* result = cur_node->next;
+        cur_node->prev->next = cur_node->next;
+        cur_node->next->prev = cur_node->prev;
+        free(cur_node);
+        nSize--;
+        return result;
 }
 
 Node* delete_by_data(char* data){
-   Node* now = first();
-   for(int i = 0; i<size(); i++){
-      if(strcmp(now->data,data))
-         return delete_node(now);
-      now = now->next;
+	Node* now = first();
+	for(int i = 0; i<size(); i++){
+		if(strcmp(now->data,data))
+			return delete_node(now);
+		now = now->next;
    }
-   return _tail;
+	return _tail;
 }
 
 Node* next(){
-   Node* result = _cur_node->next;
-   if(_cur_node == tail)
-      result = _tail->prev;
-   return result;
+	Node* result = _cur_node->next;
+	if(_cur_node == tail)
+		result = _tail->prev;
+	return result;
 }
 
 Node* prev(){
-   Node* result = _cur_node->prev;
-   if(_cur_node == head)
-      result = _head->prev;
-   return result;
+	Node* result = _cur_node->prev;
+	if(_cur_node == head)
+		result = _head->prev;
+	return result;
 }
 
 Node* first_node(){
-   if(size() > 0)
-      return _head->next;
-   else
-      return _tail;
+	if(size() > 0)
+		return _head->next;
+	else
+		return _tail;
 }
 
 Node* last_node(){
-   if(size() > 0)
-      return tail->prev;
-   else
-      return _tail;
+	if(size() > 0)
+		return tail->prev;
+	else
+		return _tail;
 }
 
 Node* get_node(size_t index){
-   if(index >= size())
-      return _tail;
-   Node* now = first();
-   for(int i = 0; i<index; i++){
-      now = now->next;
+	if(index >= size())
+		return _tail;
+	Node* now = first();
+	for(int i = 0; i<index; i++){
+		now = now->next;
    }
-   return now;
+	return now;
 }
