@@ -1,9 +1,7 @@
 #include <stdio.h>
 #include <string.h>
-/*
 #include "linkedlist.h"
 #include "textfilewriter.h"
-*/
 
 void read_command();
 
@@ -30,16 +28,16 @@ int main() {
 void read_command() {
     char command[100];
     scanf("%s", command);
-    if(!strcmp(command, "add"))        { add(); } //string argument x1
-    else if(!strcmp(command, "del"))   { del(); } //string argument x1
+    if(!strcmp(command, "add"))        { add(); } 
+    else if(!strcmp(command, "del"))   { del(); } 
     else if(!strcmp(command, "list"))  { list(); }
     else if(!strcmp(command, "next"))  { next(); }
     else if(!strcmp(command, "prev"))  { prev(); }
-    else if(!strcmp(command, "move"))  { move(); } //int argument x1
+    else if(!strcmp(command, "move"))  { move(); } 
     else if(!strcmp(command, "play"))  { play(); }
     else if(!strcmp(command, "clear")) { clear(); }
     else if(!strcmp(command, "quit"))  { quit(); }
-    else if(!strcmp(command, "load"))  { load(); } //string argument x1
-    else if(!strcmp(command, "save"))  { save(); } //string argument x1
+    else if(!strcmp(command, "load"))  { load(); } 
+    else if(!strcmp(command, "save"))  { save(); } 
     else { ; }
 }
