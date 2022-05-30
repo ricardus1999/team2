@@ -8,17 +8,21 @@
 void create_music_titles(FILE* stream){
     //표준 입력이나 파일로 부터 곡명을 입력 받아 링크드 리스트로 playlist를 생성한다
     //1.Player.c 에서 파일명 입력받고 파일로 부터 곡명을 입력받고 노드에 append
+    char *name;
     clear();
     stream = fopen((const char *) stream, "r");
     Node* now = first();
-    for(int i=0; i<size(); i++) {
-        char *new_data= (char *)malloc(sizeof(char) * MAX_NAME_SIZE);
-        fgets(new_data,MAX_NAME_SIZE,stream);
-        append(1,(char *)new_data); //이러면 playlist 생성되나?
-        now = now->next; // 이러면 노드를 도나?
-    }
 
+    do {
+        name = (char *)malloc(sizeof(char) * MAX_NAME_SIZE);
+        fgets(name,MAX_NAME_SIZE,stream);
+        append(1,(char *)name);
+        now = now -> next;
+
+    } while(strcmp(name,"\0") != 0);
+    free(name);
     fclose(stream);
+
 }
 
 void read_file(char* file_name){
@@ -29,22 +33,22 @@ void read_file(char* file_name){
     //파일명은 Player.c에서 받고 매개변수로 넘길것.
     //Linkedlist.c 에 있는 void print_file을 이용
     FILE *fp_readfile = fopen(file_name,"r");
-    print_file(fp_readfile);
-
-
+    char *name;
     //2. 재생 목록을 생성하기.
     //Linkedlist.c 에 있는 clear() 함수로 재생 목록 초기화 후에 append로 재생목록에 추가
 
-    //size()가 size()안에서 파일안에 있는 노래 수를 카운트하나??
-    //append에서 노래명 입력?? -> read_file 안에서 받아야할듯
-    //append에서 size()만큼 new_data를 입력하나?
-    //아니면 size()만큼 read_file에서 루프를 돌아야하나?
-    clear();
-    char *new_data= (char *)malloc(sizeof(char) * MAX_NAME_SIZE);
-    fgets(new_data,MAX_NAME_SIZE,fp_readfile);
-    append(size(),(char *)new_data);
+    Node *now = first();
+    do {
+        name = (char *)malloc(sizeof(char) * MAX_NAME_SIZE);
+        fgets(name,MAX_NAME_SIZE,file_name);
+        append(1,(char *)name);
+        now = now -> next;
+    } while(strcmp(name,"\0") != 0);
+
+    free(name);
     fclose(fp_readfile);
 
+    //load 함수
 }
 
 void write_file(char* file_name){
@@ -63,7 +67,7 @@ void write_file(char* file_name){
         fputs(now->data ,fp_writefile);
         now = now->next;
     }
-
     fclose(fp_writefile);
 
+    //save 함수
 }
