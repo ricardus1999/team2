@@ -1,99 +1,70 @@
 #include <stdio.h>
-#include <malloc.h>
+#include <stdlib.h>
 #include <string.h>
-#include "linkedlist.h"
-#include "textfilewriter.h"
+//#include "node.h"
+//#include "linkedlist.h"
+//#include "textfilewriter.h"
 
-void read_command(char* cmd);
-
-int main() {
-	int songNumber;
-	Node* songName;
-	int cmdNumber;
-	char cmd[5];
-	Node** musictitle = NULL;
-
-
-
-	scanf("%d", &songNumber);
-	musictitle = (Node**)malloc(sizeof(Node*) * songNumber);
-	for(int i=0; i<songNumber; i++){
-		musictitle[i] = (Node*)malloc(sizeof(Node) * 10);
-	}
-	for(int i=0; i<songNumber; i++){
-		scanf("%s", songName->data);
-		if(i==0){
-			musictitle[i]->prev = _head;}
-		else{
-			musictitle[i]->prev = musictitle[i-1];}
-		musictitle[i]->data = songName->data;
-		if(i == songNumber-1){
-			musictitle[i]->next = _tail;}
-		else{
-			musictitle[i]->next = musictitle[i+1];
-		}
-	}
-	char* ms;
-	int index;
+int main(){
 	
-	scanf("%d", cmdNumber);
-	for(int i=0; i<cmdNumber; i++){
-		scanf("%s", cmd);
-		switch(read_command(cmd)){
-			case 1:
-				scanf("%s", ms);
-				append(strlen(ms), ms);
+	int a,b;
+	scanf("%d", &a);
+	char new_data[100];
+	for (int i=0;i<a;i++){
+		scanf("%s", new_data);
+		append(100, new_data);
+	}
+
+	scanf("%d", &b);
+	for (int j=0;j<b;j++){
+		int c;		
+		char ch;
+		scanf("%c", &ch);
+		switch (ch){
+			case 'add':
+				char title[100];
+				scanf("%s",title);
+				append_left(100, title);
 				break;
-			case 2:
-				scanf("%s", ms);
-				delete(ms)
+			case 'del':
+				char title[100];
+				scanf("%s",title);
+				delete(title);
 				break;
-			case 3:
+			case 'list':
 				print();
 				break;
-				
-			case 4:
+			case 'next':
 				next();
 				break;
-			case 5:
+			case 'prev':
 				prev();
 				break;
-			case 6:
-				scanf("%d", &index);
-				insert_after(index);
+			case 'move':
+				scanf("%d", &c);
+				for (int k=0;k<c;k++){
+					_cur_node = _cur_node->next;
+				}
 				break;
-			case 7:
-				print();
-				return 0;
+			case 'play':
+				printf("%s"is now playing!,_cur_node->data);
 				break;
-			case 8:
+			case 'clear':
 				clear();
+				printf("LinkedList is cleared!");
 				break;
-			case 9:
-				clear();
-				return 0;
+			case 'quit':
+				_cur_node = first_node;
+				while(_cur_node !=NULL){
+					delete_node();
+				}
+				printf("LinkedList is cleared!\nquit!");
 				break;
-			case 10:
-				scanf("%s", ms);
-				break;
-			case 11:
-				scanf("%s", ms);
+			case 'load':
+				char temp;
+				scanf("%c",&temp);
+				read_file(temp);
 				break;
 		}
 	}
-}
-				
-			
-void read_command(char* cmd) {
-	if(!strcmp(command, "add"))        { return 1; } 
-	else if(!strcmp(command, "del"))   { return 2; } 
-	else if(!strcmp(command, "list"))  { return 3; }
-   	else if(!strcmp(command, "next"))  { return 4; }
-    	else if(!strcmp(command, "prev"))  { return 5; }
-    	else if(!strcmp(command, "move"))  { return 6; } 
-    	else if(!strcmp(command, "play"))  { return 7; }
-    	else if(!strcmp(command, "clear")) { return 8; }
-    	else if(!strcmp(command, "quit"))  { return 9; }
-    	else if(!strcmp(command, "load"))  { return 10; } 
-    	else return 11;
 }
